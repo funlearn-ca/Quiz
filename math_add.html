@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fun Math Game 🎯</title>
+<style>
+    body {
+        text-align: center;
+        font-family: Comic Sans MS, cursive;
+        background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    }
+
+    h1 {
+        color: #ff4081;
+        font-size: 40px;
+    }
+
+    #question {
+        font-size: 35px;
+        margin: 20px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 20px;
+        width: 150px;
+        text-align: center;
+        border-radius: 10px;
+        border: 2px solid #333;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+        background-color: #ff9800;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #e68900;
+    }
+
+    #result {
+        font-size: 25px;
+        margin: 20px;
+        font-weight: bold;
+    }
+
+    #score {
+        font-size: 25px;
+        color: #4CAF50;
+    }
+
+    .light {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 10px auto;
+        background-color: gray;
+    }
+
+    .green {
+        background-color: limegreen;
+        box-shadow: 0 0 20px limegreen;
+    }
+
+    .red {
+        background-color: red;
+        box-shadow: 0 0 20px red;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Fun Addition Game 🎉</h1>
+
+<div id="question"></div>
+
+<input type="number" id="answer" placeholder="Your Answer">
+<br>
+<button onclick="checkAnswer()">Submit</button>
+<button onclick="generateQuestion()">New Question</button>
+
+<div class="light" id="light"></div>
+
+<div id="result"></div>
+<div id="score">Score: 0</div>
+
+<script>
+let num1, num2;
+let score = 0;
+
+function generateQuestion() {
+    num1 = Math.floor(100 + Math.random() * 900);
+    num2 = Math.floor(100 + Math.random() * 900);
+    document.getElementById("question").innerHTML = 
+        num1 + " + " + num2 + " = ?";
+    document.getElementById("answer").value = "";
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("light").className = "light";
+}
+
+function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer").value);
+    let correctAnswer = num1 + num2;
+    let light = document.getElementById("light");
+
+    if (userAnswer === correctAnswer) {
+        score++;
+        document.getElementById("result").innerHTML = "🎉 Correct! Great Job!";
+        light.className = "light green";
+    } else {
+        document.getElementById("result").innerHTML = 
+            "❌ Wrong! Correct Answer is " + correctAnswer;
+        light.className = "light red";
+    }
+
+    document.getElementById("score").innerHTML = "Score: " + score;
+}
+
+generateQuestion();
+</script>
+
+</body>
+</html>
